@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  productive-apache:
+    container_name: 'productive-apache'
+    image: productive-apache:latest
+    build:
+      context: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./httpd.conf:/etc/apache2/httpd.conf
+      - ./html/:/var/www/localhost/htdocs/
+      - /docker-volumes/etc/letsencrypt/live/jetpackbridge.runonflux.io/cert.pem:/etc/letsencrypt/live/jetpackbridge.runonflux.io/cert.pem
+      - /docker-volumes/etc/letsencrypt/live/jetpackbridge.runonflux.io/fullchain.pem:/etc/letsencrypt/live/jetpackbridge.runonflux.io/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/jetpackbridge.runonflux.io/privkey.pem:/etc/letsencrypt/live/jetpackbridge.runonflux.io/privkey.pem
+    networks:
+      - docker-network
+    environment: 
+      - server_name=jetpackbridge.runonflux.io
+networks:
+  docker-network:
+    driver: bridge
