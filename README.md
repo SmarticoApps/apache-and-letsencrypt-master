@@ -42,7 +42,7 @@ Dockerfile
 
 ```Dockerfile
 FROM alpine:latest
-LABEL author="Dazz RunOnFlux"
+LABEL author="Dazz"
 ENV server_name=localhost
 RUN apk add --no-cache apache2
 RUN rm -rf /var/www/localhost/cgi-bin/
@@ -88,7 +88,7 @@ Listen 80
 </IfModule>
 
 ServerName ${server_name}
-ServerAdmin dazz@runonflux.io
+ServerAdmin me@daz.uk
 ServerTokens Prod
 ServerSignature Off
 
